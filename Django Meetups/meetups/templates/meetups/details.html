@@ -1,0 +1,56 @@
+{% extends 'meetups/base/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ detail.title }}
+{% endblock %}
+    
+{% block csslink %}    
+<link rel="stylesheet" href="{% static 'meetups/styles/all-details.css' %}">
+{% endblock %}
+
+{% block main_heading %}
+{{ detail.title }}
+{% endblock %}
+
+
+
+{% block body %}
+
+    {% if meetup_found %}
+    <article>
+        <img id="main-image" src="{{ detail.image.url }}" alt="{{ detail.title }}">
+        <section id="location">
+            <h2>Meetup Location</h2>
+            <address>This meet take place in <span>{{ detail.location.name }}</span>({{ detail.location.address }})</address>
+        </section>
+        <section id='details'>
+            <h2>What's this meetup about?</h2>
+            <p>{{ detail.description }}</p>
+            <footer>
+                <p>Need more details? <a href="mailto:{{ detail.orgainser_email }}">Please Contact organiser</a></p>
+            </footer>
+        </section>
+        <section id='registration'>
+            <h2>Join us!</h2>
+            <form action='{% url "all-details" detail.slug %}' method="POST">
+                <!-- To be aware of attackers - used for security mechanism -->
+                {% csrf_token %}
+                <ul>
+                    <!-- as_ul -> it will display all the form fields under ul tag as li  -->
+                    <!-- as_p -> it will display as p tag -->
+                    {{ form.as_ul }}
+                </ul>
+                <div id='registration-actions'>
+                    <button>Register</button>
+                </div>
+            </form>
+        </section>
+    </article>
+    {% else %}
+        <p>No meetup is found for this slug</p>
+    {% endif %}
+
+    
+{% endblock %}
+       

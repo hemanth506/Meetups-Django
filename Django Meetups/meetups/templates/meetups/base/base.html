@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitmarshal-{% block title %}Meetups{% endblock %}</title>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'meetups/images/greater_than_icon.ico' %}">
+    <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+    {% block csslink %}{% endblock %}
+</head>
+<body>
+    <header id='main-header'>
+        <nav><a href='/meet/meetups/' id='main-logo'>All Meetups</a></nav>
+        
+        <h3>{% block main_heading %}{% endblock %}</h3>
+        {% block main_header_content %}{% endblock %}
+    </header>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    <footer>
+        <a href="/ecom/ecommerce/"><h3 style="text-align:end">Go to Ecommerce</h3></a>
+        <a href="/"><h3 style="text-align:end">Go to Home</h3></a>
+    </footer>
+</body>
+</html>

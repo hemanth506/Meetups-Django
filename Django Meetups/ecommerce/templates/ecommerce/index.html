@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitmarshal-Ecommerce</title>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'ecommerce/images/greater_than_icon.ico' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/styles/base.css' %}">
+</head>
+<body>
+    <header id='main-header'>
+        <nav><a href='/ecom/ecommerce/' id='main-logo'>Ecommerce</a></nav>
+    </header>
+    <h1>All Ecommerce Items</h1>
+
+    {% if show_product %}
+    <ul>
+        {% for get_item in item %}
+            <li><h2>{{ get_item.product }}</h2></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <footer>
+        <a href="/meet/meetups/"><h3 style="text-align:end">Go to Meetups</h3></a>
+        <a href="/"><h3 style="text-align:end">Go to Home page</h3></a>
+    </footer>
+</body>
+</html>
